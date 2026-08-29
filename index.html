@@ -1,178 +1,328 @@
 <!DOCTYPE html>
 
-<html>
+<html lang="en">
 
 <head>
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>Play & Earn - Trivia Challenge</title>
+<title>Play & Earn | Trivia Challenge</title>
 
 <style>
 
-body {
+*{box-sizing:border-box}
 
-  margin: 0;
+body{
 
-  font-family: Arial, sans-serif;
+margin:0;
 
-  background: #21113f;
+font-family:Arial,sans-serif;
 
-  color: #222;
+background:linear-gradient(135deg,#21113f,#4b247d);
 
-  min-height: 100vh;
+color:#222;
 
-  display: flex;
+min-height:100vh;
 
-  align-items: center;
-
-  justify-content: center;
-
-  padding: 20px;
-
-  box-sizing: border-box;
+padding:20px;
 
 }
 
-.game {
+.wrap{
 
-  background: white;
+width:100%;
 
-  border-radius: 25px;
+max-width:560px;
 
-  padding: 25px;
-
-  width: 100%;
-
-  max-width: 500px;
-
-  text-align: center;
-
-  box-sizing: border-box;
+margin:auto;
 
 }
 
-h1 {
+.game{
 
-  font-size: 30px;
+background:#fff;
 
-  margin-bottom: 10px;
+border-radius:28px;
 
-}
+padding:25px;
 
-.subtitle {
-
-  font-size: 18px;
+box-shadow:0 18px 45px rgba(0,0,0,.28);
 
 }
 
-.score {
+.brand{
 
-  font-size: 22px;
+text-align:center;
 
-  font-weight: bold;
+color:#21113f;
 
-  margin: 20px 0;
+font-weight:800;
 
-}
+font-size:15px;
 
-.question {
+letter-spacing:1px;
 
-  font-size: 21px;
-
-  font-weight: bold;
-
-  margin: 25px 0;
+text-transform:uppercase;
 
 }
 
-.answers {
+h1{
 
-  display: grid;
+text-align:center;
 
-  gap: 12px;
+font-size:31px;
 
-}
-
-button {
-
-  padding: 15px;
-
-  border: 0;
-
-  border-radius: 12px;
-
-  font-size: 16px;
-
-  font-weight: bold;
-
-  cursor: pointer;
+margin:8px 0;
 
 }
 
-.answer {
+.subtitle{
 
-  text-align: left;
+text-align:center;
 
-  background: #eeeeee;
+font-size:17px;
 
-}
+margin:0 0 18px;
 
-.answer:hover {
-
-  background: #dddddd;
+color:#555;
 
 }
 
-.correct {
+.top{
 
-  background: #b9efc5 !important;
+display:flex;
 
-}
+justify-content:space-between;
 
-.wrong {
+gap:10px;
 
-  background: #ffb5b5 !important;
+background:#f3eff9;
 
-}
+border-radius:16px;
 
-.next {
+padding:13px 15px;
 
-  background: #21113f;
-
-  color: white;
-
-  width: 100%;
-
-  margin-top: 15px;
+font-weight:800;
 
 }
 
-.message {
+.progress{
 
-  font-size: 18px;
+height:9px;
 
-  font-weight: bold;
+background:#e6e1ed;
 
-  margin: 15px 0;
+border-radius:99px;
 
-  min-height: 25px;
+margin:16px 0;
 
-}
-
-.hidden {
-
-  display: none;
+overflow:hidden;
 
 }
 
-.restart {
+.bar{
 
-  background: #21113f;
+height:100%;
 
-  color: white;
+width:0;
 
-  width: 100%;
+background:#21113f;
+
+border-radius:99px;
+
+transition:.25s;
+
+}
+
+.question{
+
+font-size:22px;
+
+font-weight:800;
+
+line-height:1.3;
+
+margin:24px 0 16px;
+
+}
+
+.answers{
+
+display:grid;
+
+gap:11px;
+
+}
+
+button{
+
+width:100%;
+
+padding:15px;
+
+border:0;
+
+border-radius:13px;
+
+font-size:16px;
+
+font-weight:800;
+
+cursor:pointer;
+
+}
+
+.answer{
+
+text-align:left;
+
+background:#eee;
+
+}
+
+.answer.correct{
+
+background:#b9efc5!important;
+
+}
+
+.answer.wrong{
+
+background:#ffb5b5!important;
+
+}
+
+.answer:disabled{
+
+cursor:default;
+
+}
+
+.message{
+
+text-align:center;
+
+min-height:27px;
+
+margin:15px 0;
+
+font-weight:800;
+
+font-size:17px;
+
+}
+
+.next,.restart{
+
+background:#21113f;
+
+color:#fff;
+
+}
+
+.hidden{
+
+display:none!important;
+
+}
+
+.reward{
+
+margin-top:20px;
+
+padding:17px;
+
+border-radius:18px;
+
+background:#fff7d6;
+
+border:1px solid #f0d77b;
+
+text-align:center;
+
+}
+
+.reward h3{
+
+margin:0 0 7px;
+
+}
+
+.reward p{
+
+margin:5px 0;
+
+color:#555;
+
+font-size:14px;
+
+}
+
+.final{
+
+text-align:center;
+
+}
+
+.final .big{
+
+font-size:42px;
+
+font-weight:900;
+
+color:#21113f;
+
+margin:8px 0;
+
+}
+
+.leaderboard{
+
+margin-top:18px;
+
+border-top:1px solid #ddd;
+
+padding-top:15px;
+
+}
+
+.leaderboard h3{
+
+text-align:center;
+
+margin:0 0 10px;
+
+}
+
+.row{
+
+display:flex;
+
+justify-content:space-between;
+
+padding:8px 10px;
+
+border-radius:9px;
+
+background:#f6f6f6;
+
+margin:5px 0;
+
+font-size:14px;
+
+}
+
+.note{
+
+font-size:12px;
+
+color:#666;
+
+line-height:1.4;
+
+margin-top:15px;
+
+text-align:center;
 
 }
 
@@ -182,243 +332,385 @@ button {
 
 <body>
 
+<div class="wrap">
+
 <div class="game">
 
-  <h1>🧠 Trivia Challenge</h1>
+<div class="brand">🎮 Play & Earn</div>
 
-  <p class="subtitle">
+<h1>🧠 Trivia Challenge</h1>
 
-    Answer correctly and earn points!
+<p class="subtitle">
 
-  </p>
+Answer correctly and build your score!
 
-  <div class="score">
+</p>
 
-    ⭐ Points: <span id="score">0</span>
+<div id="gameArea">
 
-  </div>
+<div class="top">
 
-  <div id="question" class="question"></div>
+<span>⭐ Points: <span id="score">0</span></span>
 
-  <div id="answers" class="answers"></div>
+<span>Question <span id="number">1</span>/10</span>
 
-  <div id="message" class="message"></div>
+</div>
 
-  <button id="next" class="next hidden">
+<div class="progress">
 
-    Next Question ➡️
+<div id="bar" class="bar"></div>
 
-  </button>
+</div>
 
-  <div id="final" class="hidden">
+<div id="question" class="question"></div>
 
-    <h2>🏆 Game Complete!</h2>
+<div id="answers" class="answers"></div>
 
-    <p>Your final score is:</p>
+<div id="message" class="message"></div>
 
-    <h2>⭐ <span id="finalScore">0</span> points</h2>
+<button id="next" class="next hidden">
 
-    <button class="restart" onclick="restartGame()">
+Next Question ➡️
 
-      🔄 Play Again
+</button>
 
-    </button>
+</div>
 
-  </div>
+<div id="final" class="final hidden">
+
+<h2>🏆 Game Complete!</h2>
+
+<div class="big">
+
+<span id="finalScore">0</span> points
+
+</div>
+
+<p id="finalMessage"></p>
+
+<div class="reward">
+
+<h3>🎁 Play & Earn Rewards</h3>
+
+<p>
+
+Keep playing to build your points and qualify for future rewards and promotions.
+
+</p>
+
+<p>
+
+<strong>Important:</strong>
+
+Rewards are subject to eligibility and the official promotion rules.
+
+</p>
+
+</div>
+
+<button class="restart" onclick="restartGame()">
+
+🔄 Play Again
+
+</button>
+
+</div>
+
+<div class="leaderboard">
+
+<h3>🏅 Top Scores</h3>
+
+<div class="row">
+
+<span>🥇 Trivia Master</span>
+
+<strong>100</strong>
+
+</div>
+
+<div class="row">
+
+<span>🥈 Game Champ</span>
+
+<strong>90</strong>
+
+</div>
+
+<div class="row">
+
+<span>🥉 Quiz Boss</span>
+
+<strong>80</strong>
+
+</div>
+
+</div>
+
+<p class="note">
+
+Your score is currently tracked only during your game session.
+
+A score by itself does not guarantee a cash prize.
+
+</p>
+
+</div>
 
 </div>
 
 <script>
 
-const questions = [
+const questions=[
 
-  {
+{
 
-    question: "What is the capital of Michigan?",
+q:"What is the capital of Michigan?",
 
-    answers: ["Detroit", "Lansing", "Flint", "Grand Rapids"],
+a:["Detroit","Lansing","Flint","Grand Rapids"],
 
-    correct: 1
+c:1
 
-  },
+},
 
-  {
+{
 
-    question: "How many days are in a week?",
+q:"How many days are in a week?",
 
-    answers: ["5", "6", "7", "8"],
+a:["5","6","7","8"],
 
-    correct: 2
+c:2
 
-  },
+},
 
-  {
+{
 
-    question: "Which planet is known as the Red Planet?",
+q:"Which planet is known as the Red Planet?",
 
-    answers: ["Earth", "Mars", "Jupiter", "Venus"],
+a:["Earth","Mars","Jupiter","Venus"],
 
-    correct: 1
+c:1
 
-  },
+},
 
-  {
+{
 
-    question: "What color do you get by mixing blue and yellow?",
+q:"What color do you get by mixing blue and yellow?",
 
-    answers: ["Purple", "Orange", "Green", "Pink"],
+a:["Purple","Orange","Green","Pink"],
 
-    correct: 2
+c:2
 
-  },
+},
 
-  {
+{
 
-    question: "How many months are in a year?",
+q:"How many months are in a year?",
 
-    answers: ["10", "11", "12", "13"],
+a:["10","11","12","13"],
 
-    correct: 2
+c:2
 
-  }
+},
+
+{
+
+q:"Which ocean is the largest?",
+
+a:["Atlantic","Pacific","Indian","Arctic"],
+
+c:1
+
+},
+
+{
+
+q:"How many sides does a triangle have?",
+
+a:["2","3","4","5"],
+
+c:1
+
+},
+
+{
+
+q:"Which animal is known as the king of the jungle?",
+
+a:["Tiger","Elephant","Lion","Bear"],
+
+c:2
+
+},
+
+{
+
+q:"What is 5 + 5?",
+
+a:["8","9","10","11"],
+
+c:2
+
+},
+
+{
+
+q:"Which season comes after summer?",
+
+a:["Spring","Winter","Fall","Summer"],
+
+c:2
+
+}
 
 ];
 
-let currentQuestion = 0;
+let current=0;
 
-let score = 0;
+let score=0;
 
-let answered = false;
+let answered=false;
 
-const questionBox = document.getElementById("question");
+const $=id=>document.getElementById(id);
 
-const answersBox = document.getElementById("answers");
+function showQuestion(){
 
-const scoreBox = document.getElementById("score");
+answered=false;
 
-const messageBox = document.getElementById("message");
+$("message").textContent="";
 
-const nextButton = document.getElementById("next");
+$("next").classList.add("hidden");
 
-const finalBox = document.getElementById("final");
+const x=questions[current];
 
-const finalScore = document.getElementById("finalScore");
+$("number").textContent=current+1;
 
-function showQuestion() {
+$("bar").style.width=
 
-  answered = false;
+((current+1)/questions.length*100)+"%";
 
-  messageBox.textContent = "";
+$("question").textContent=
 
-  nextButton.classList.add("hidden");
+(current+1)+". "+x.q;
 
-  const q = questions[currentQuestion];
+$("answers").innerHTML="";
 
-  questionBox.textContent =
+x.a.forEach((text,i)=>{
 
-    (currentQuestion + 1) + ". " + q.question;
+const b=document.createElement("button");
 
-  answersBox.innerHTML = "";
+b.className="answer";
 
-  q.answers.forEach((answer, index) => {
+b.textContent=text;
 
-    const button = document.createElement("button");
+b.onclick=()=>check(b,i);
 
-    button.textContent = answer;
+$("answers").appendChild(b);
 
-    button.className = "answer";
-
-    button.onclick = function() {
-
-      checkAnswer(button, index);
-
-    };
-
-    answersBox.appendChild(button);
-
-  });
+});
 
 }
 
-function checkAnswer(button, selected) {
+function check(btn,choice){
 
-  if (answered) return;
+if(answered)return;
 
-  answered = true;
+answered=true;
 
-  const correct = questions[currentQuestion].correct;
+const correct=questions[current].c;
 
-  if (selected === correct) {
+document.querySelectorAll(".answer")
 
-    score += 10;
+.forEach(b=>b.disabled=true);
 
-    scoreBox.textContent = score;
+if(choice===correct){
 
-    button.classList.add("correct");
+score+=10;
 
-    messageBox.textContent =
+$("score").textContent=score;
 
-      "🎉 Correct! You earned 10 points!";
+btn.classList.add("correct");
 
-  } else {
+$("message").textContent=
 
-    button.classList.add("wrong");
+"🎉 Correct! +10 points!";
 
-    messageBox.textContent =
+}else{
 
-      "❌ Not quite!";
+btn.classList.add("wrong");
 
-    answersBox.children[correct].classList.add("correct");
+document.querySelectorAll(".answer")
 
-  }
+[correct].classList.add("correct");
 
-  nextButton.classList.remove("hidden");
+$("message").textContent=
+
+"❌ Not quite — the correct answer is highlighted.";
 
 }
 
-nextButton.onclick = function() {
+$("next").classList.remove("hidden");
 
-  currentQuestion++;
+}
 
-  if (currentQuestion < questions.length) {
+$("next").onclick=()=>{
 
-    showQuestion();
+current++;
 
-  } else {
+if(current<questions.length){
 
-    questionBox.classList.add("hidden");
+showQuestion();
 
-    answersBox.classList.add("hidden");
+}else{
 
-    messageBox.classList.add("hidden");
+finish();
 
-    nextButton.classList.add("hidden");
-
-    finalScore.textContent = score;
-
-    finalBox.classList.remove("hidden");
-
-  }
+}
 
 };
 
-function restartGame() {
+function finish(){
 
-  currentQuestion = 0;
+$("gameArea").classList.add("hidden");
 
-  score = 0;
+$("final").classList.remove("hidden");
 
-  scoreBox.textContent = "0";
+$("finalScore").textContent=score;
 
-  questionBox.classList.remove("hidden");
+if(score===100){
 
-  answersBox.classList.remove("hidden");
+$("finalMessage").textContent=
 
-  messageBox.classList.remove("hidden");
+"🔥 Perfect score! You got every question right!";
 
-  finalBox.classList.add("hidden");
+}else if(score>=70){
 
-  showQuestion();
+$("finalMessage").textContent=
+
+"👏 Great job! Keep playing to beat your score!";
+
+}else{
+
+$("finalMessage").textContent=
+
+"💪 Keep practicing — you can beat that score!";
+
+}
+
+}
+
+function restartGame(){
+
+current=0;
+
+score=0;
+
+$("score").textContent=0;
+
+$("final").classList.add("hidden");
+
+$("gameArea").classList.remove("hidden");
+
+showQuestion();
 
 }
 

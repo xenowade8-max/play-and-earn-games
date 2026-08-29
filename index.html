@@ -20,33 +20,25 @@ font-family:Arial,sans-serif;
 
 background:linear-gradient(135deg,#21113f,#4b247d);
 
-color:#222;
-
 min-height:100vh;
 
 padding:20px;
 
 }
 
-.wrap{
-
-width:100%;
+.game{
 
 max-width:560px;
 
 margin:auto;
 
-}
-
-.game{
-
-background:#fff;
+background:white;
 
 border-radius:28px;
 
 padding:25px;
 
-box-shadow:0 18px 45px rgba(0,0,0,.28);
+box-shadow:0 18px 45px rgba(0,0,0,.3);
 
 }
 
@@ -54,103 +46,37 @@ box-shadow:0 18px 45px rgba(0,0,0,.28);
 
 text-align:center;
 
+font-weight:bold;
+
 color:#21113f;
-
-font-weight:800;
-
-font-size:15px;
 
 letter-spacing:1px;
 
-text-transform:uppercase;
-
 }
 
-h1{
-
-text-align:center;
-
-font-size:31px;
-
-margin:8px 0;
-
-}
+h1{text-align:center}
 
 .subtitle{
 
 text-align:center;
 
-font-size:17px;
-
-margin:0 0 18px;
-
 color:#555;
 
 }
 
-.top{
+input{
 
-display:flex;
+width:100%;
 
-justify-content:space-between;
+padding:15px;
 
-gap:10px;
+border:1px solid #ccc;
 
-background:#f3eff9;
+border-radius:13px;
 
-border-radius:16px;
+font-size:17px;
 
-padding:13px 15px;
-
-font-weight:800;
-
-}
-
-.progress{
-
-height:9px;
-
-background:#e6e1ed;
-
-border-radius:99px;
-
-margin:16px 0;
-
-overflow:hidden;
-
-}
-
-.bar{
-
-height:100%;
-
-width:0;
-
-background:#21113f;
-
-border-radius:99px;
-
-transition:.25s;
-
-}
-
-.question{
-
-font-size:22px;
-
-font-weight:800;
-
-line-height:1.3;
-
-margin:24px 0 16px;
-
-}
-
-.answers{
-
-display:grid;
-
-gap:11px;
+margin:10px 0;
 
 }
 
@@ -166,9 +92,75 @@ border-radius:13px;
 
 font-size:16px;
 
-font-weight:800;
+font-weight:bold;
 
 cursor:pointer;
+
+}
+
+.start,.next,.restart{
+
+background:#21113f;
+
+color:white;
+
+}
+
+.top{
+
+display:flex;
+
+justify-content:space-between;
+
+background:#f3eff9;
+
+border-radius:16px;
+
+padding:13px;
+
+font-weight:bold;
+
+}
+
+.progress{
+
+height:9px;
+
+background:#ddd;
+
+border-radius:20px;
+
+margin:16px 0;
+
+}
+
+.bar{
+
+height:100%;
+
+width:0;
+
+background:#21113f;
+
+border-radius:20px;
+
+}
+
+.question{
+
+font-size:22px;
+
+font-weight:bold;
+
+margin:24px 0 16px;
+
+}
+
+.answers{
+
+display:grid;
+
+gap:11px;
 
 }
 
@@ -180,21 +172,15 @@ background:#eee;
 
 }
 
-.answer.correct{
+.correct{
 
 background:#b9efc5!important;
 
 }
 
-.answer.wrong{
+.wrong{
 
 background:#ffb5b5!important;
-
-}
-
-.answer:disabled{
-
-cursor:default;
 
 }
 
@@ -202,21 +188,11 @@ cursor:default;
 
 text-align:center;
 
-min-height:27px;
+font-weight:bold;
+
+min-height:25px;
 
 margin:15px 0;
-
-font-weight:800;
-
-font-size:17px;
-
-}
-
-.next,.restart{
-
-background:#21113f;
-
-color:#fff;
 
 }
 
@@ -236,61 +212,17 @@ border-radius:18px;
 
 background:#fff7d6;
 
-border:1px solid #f0d77b;
-
 text-align:center;
-
-}
-
-.reward h3{
-
-margin:0 0 7px;
-
-}
-
-.reward p{
-
-margin:5px 0;
-
-color:#555;
-
-font-size:14px;
-
-}
-
-.final{
-
-text-align:center;
-
-}
-
-.final .big{
-
-font-size:42px;
-
-font-weight:900;
-
-color:#21113f;
-
-margin:8px 0;
 
 }
 
 .leaderboard{
 
-margin-top:18px;
+margin-top:20px;
 
 border-top:1px solid #ddd;
 
 padding-top:15px;
-
-}
-
-.leaderboard h3{
-
-text-align:center;
-
-margin:0 0 10px;
 
 }
 
@@ -300,15 +232,13 @@ display:flex;
 
 justify-content:space-between;
 
-padding:8px 10px;
-
-border-radius:9px;
+padding:9px;
 
 background:#f6f6f6;
 
 margin:5px 0;
 
-font-size:14px;
+border-radius:9px;
 
 }
 
@@ -317,10 +247,6 @@ font-size:14px;
 font-size:12px;
 
 color:#666;
-
-line-height:1.4;
-
-margin-top:15px;
 
 text-align:center;
 
@@ -332,27 +258,55 @@ text-align:center;
 
 <body>
 
-<div class="wrap">
-
 <div class="game">
 
-<div class="brand">🎮 Play & Earn</div>
+<div class="brand">🎮 PLAY & EARN</div>
+
+<div id="login">
 
 <h1>🧠 Trivia Challenge</h1>
 
 <p class="subtitle">
 
-Answer correctly and build your score!
+Enter your player name so your points can be saved on this device.
 
 </p>
 
-<div id="gameArea">
+<input
+
+id="name"
+
+maxlength="30"
+
+placeholder="Enter your player name"
+
+>
+
+<button class="start" onclick="startGame()">
+
+Start Playing 🎮
+
+</button>
+
+</div>
+
+<div id="gameArea" class="hidden">
+
+<h1>🧠 Trivia Challenge</h1>
 
 <div class="top">
 
-<span>⭐ Points: <span id="score">0</span></span>
+<span>
 
-<span>Question <span id="number">1</span>/10</span>
+👤 <span id="player"></span>
+
+</span>
+
+<span>
+
+⭐ <span id="score">0</span>
+
+</span>
 
 </div>
 
@@ -376,17 +330,11 @@ Next Question ➡️
 
 </div>
 
-<div id="final" class="final hidden">
+<div id="final" class="hidden">
 
 <h2>🏆 Game Complete!</h2>
 
-<div class="big">
-
-<span id="finalScore">0</span> points
-
-</div>
-
-<p id="finalMessage"></p>
+<p id="finalText"></p>
 
 <div class="reward">
 
@@ -394,21 +342,23 @@ Next Question ➡️
 
 <p>
 
-Keep playing to build your points and qualify for future rewards and promotions.
+Keep playing to build your points and qualify for future promotions.
 
 </p>
 
 <p>
 
-<strong>Important:</strong>
+<strong>
 
-Rewards are subject to eligibility and the official promotion rules.
+Rewards are subject to official eligibility and promotion rules.
+
+</strong>
 
 </p>
 
 </div>
 
-<button class="restart" onclick="restartGame()">
+<button class="restart" onclick="newGame()">
 
 🔄 Play Again
 
@@ -448,13 +398,11 @@ Rewards are subject to eligibility and the official promotion rules.
 
 <p class="note">
 
-Your score is currently tracked only during your game session.
+Your points are saved on this device for your player name.
 
-A score by itself does not guarantee a cash prize.
+They are game points and are not automatically cash.
 
 </p>
-
-</div>
 
 </div>
 
@@ -494,7 +442,7 @@ c:1
 
 {
 
-q:"What color do you get by mixing blue and yellow?",
+q:"What color do blue and yellow make?",
 
 a:["Purple","Orange","Green","Pink"],
 
@@ -568,9 +516,47 @@ let current=0;
 
 let score=0;
 
+let playerName="";
+
 let answered=false;
 
 const $=id=>document.getElementById(id);
+
+function startGame(){
+
+playerName=$("name").value.trim();
+
+if(!playerName){
+
+alert("Please enter your player name.");
+
+return;
+
+}
+
+localStorage.setItem("playerName",playerName);
+
+score=Number(
+
+localStorage.getItem("points_"+playerName) || 0
+
+);
+
+$("player").textContent=playerName;
+
+$("score").textContent=score;
+
+$("login").classList.add("hidden");
+
+$("final").classList.add("hidden");
+
+$("gameArea").classList.remove("hidden");
+
+current=0;
+
+showQuestion();
+
+}
 
 function showQuestion(){
 
@@ -580,9 +566,7 @@ $("message").textContent="";
 
 $("next").classList.add("hidden");
 
-const x=questions[current];
-
-$("number").textContent=current+1;
+const q=questions[current];
 
 $("bar").style.width=
 
@@ -590,27 +574,27 @@ $("bar").style.width=
 
 $("question").textContent=
 
-(current+1)+". "+x.q;
+(current+1)+". "+q.q;
 
 $("answers").innerHTML="";
 
-x.a.forEach((text,i)=>{
+q.a.forEach((answer,index)=>{
 
-const b=document.createElement("button");
+const button=document.createElement("button");
 
-b.className="answer";
+button.className="answer";
 
-b.textContent=text;
+button.textContent=answer;
 
-b.onclick=()=>check(b,i);
+button.onclick=()=>checkAnswer(button,index);
 
-$("answers").appendChild(b);
+$("answers").appendChild(button);
 
 });
 
 }
 
-function check(btn,choice){
+function checkAnswer(button,choice){
 
 if(answered)return;
 
@@ -626,9 +610,17 @@ if(choice===correct){
 
 score+=10;
 
+localStorage.setItem(
+
+"points_"+playerName,
+
+score
+
+);
+
 $("score").textContent=score;
 
-btn.classList.add("correct");
+button.classList.add("correct");
 
 $("message").textContent=
 
@@ -636,7 +628,7 @@ $("message").textContent=
 
 }else{
 
-btn.classList.add("wrong");
+button.classList.add("wrong");
 
 document.querySelectorAll(".answer")
 
@@ -644,7 +636,7 @@ document.querySelectorAll(".answer")
 
 $("message").textContent=
 
-"❌ Not quite — the correct answer is highlighted.";
+"❌ Not quite!";
 
 }
 
@@ -674,47 +666,41 @@ $("gameArea").classList.add("hidden");
 
 $("final").classList.remove("hidden");
 
-$("finalScore").textContent=score;
+$("finalText").innerHTML=
 
-if(score===100){
+"Great job, <strong>"+
 
-$("finalMessage").textContent=
+playerName+
 
-"🔥 Perfect score! You got every question right!";
+"</strong>! Your saved points total is <strong>"+
 
-}else if(score>=70){
+score+
 
-$("finalMessage").textContent=
-
-"👏 Great job! Keep playing to beat your score!";
-
-}else{
-
-$("finalMessage").textContent=
-
-"💪 Keep practicing — you can beat that score!";
+"</strong>.";
 
 }
 
-}
-
-function restartGame(){
-
-current=0;
-
-score=0;
-
-$("score").textContent=0;
+function newGame(){
 
 $("final").classList.add("hidden");
 
 $("gameArea").classList.remove("hidden");
 
+current=0;
+
 showQuestion();
 
 }
 
-showQuestion();
+const savedName=
+
+localStorage.getItem("playerName");
+
+if(savedName){
+
+$("name").value=savedName;
+
+}
 
 </script>
 

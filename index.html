@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Trivia Challenge</title>
+
+<style>
+
+body{margin:0;font-family:Arial;background:#21113f;color:white;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px}
+
+.game{background:white;color:#222;border-radius:25px;padding:25px;width:100%;max-width:500px;text-align:center}
+
+h1{font-size:30px}
+
+.score{font-size:22px;font-weight:bold;margin:15px}
+
+.question{font-size:21px;font-weight:bold;margin:25px 0}
+
+.answers{display:grid;gap:12px}
+
+button{padding:15px;border:0;border-radius:12px;font-size:16px;font-weight:bold}
+
+.answer{text-align:left;background:#eee}
+
+.correct{background:#b9efc5!important}
+
+.wrong{background:#ffb5b5!important}
+
+.next{background:#222;color:white;width:100%;margin-top:15px}
+
+.hidden{display:none}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="game">
+
+<h1>🧠 Trivia Challenge</h1>
+
+<p>Answer correctly and earn points!</p>
+
+<div id="game">
+
+<div class="score">⭐ Points: <span id="score">

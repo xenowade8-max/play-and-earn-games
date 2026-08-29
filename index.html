@@ -6,33 +6,175 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>Trivia Challenge</title>
+<title>Play & Earn - Trivia Challenge</title>
 
 <style>
 
-body{margin:0;font-family:Arial;background:#21113f;color:white;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px}
+body {
 
-.game{background:white;color:#222;border-radius:25px;padding:25px;width:100%;max-width:500px;text-align:center}
+  margin: 0;
 
-h1{font-size:30px}
+  font-family: Arial, sans-serif;
 
-.score{font-size:22px;font-weight:bold;margin:15px}
+  background: #21113f;
 
-.question{font-size:21px;font-weight:bold;margin:25px 0}
+  color: #222;
 
-.answers{display:grid;gap:12px}
+  min-height: 100vh;
 
-button{padding:15px;border:0;border-radius:12px;font-size:16px;font-weight:bold}
+  display: flex;
 
-.answer{text-align:left;background:#eee}
+  align-items: center;
 
-.correct{background:#b9efc5!important}
+  justify-content: center;
 
-.wrong{background:#ffb5b5!important}
+  padding: 20px;
 
-.next{background:#222;color:white;width:100%;margin-top:15px}
+  box-sizing: border-box;
 
-.hidden{display:none}
+}
+
+.game {
+
+  background: white;
+
+  border-radius: 25px;
+
+  padding: 25px;
+
+  width: 100%;
+
+  max-width: 500px;
+
+  text-align: center;
+
+  box-sizing: border-box;
+
+}
+
+h1 {
+
+  font-size: 30px;
+
+  margin-bottom: 10px;
+
+}
+
+.subtitle {
+
+  font-size: 18px;
+
+}
+
+.score {
+
+  font-size: 22px;
+
+  font-weight: bold;
+
+  margin: 20px 0;
+
+}
+
+.question {
+
+  font-size: 21px;
+
+  font-weight: bold;
+
+  margin: 25px 0;
+
+}
+
+.answers {
+
+  display: grid;
+
+  gap: 12px;
+
+}
+
+button {
+
+  padding: 15px;
+
+  border: 0;
+
+  border-radius: 12px;
+
+  font-size: 16px;
+
+  font-weight: bold;
+
+  cursor: pointer;
+
+}
+
+.answer {
+
+  text-align: left;
+
+  background: #eeeeee;
+
+}
+
+.answer:hover {
+
+  background: #dddddd;
+
+}
+
+.correct {
+
+  background: #b9efc5 !important;
+
+}
+
+.wrong {
+
+  background: #ffb5b5 !important;
+
+}
+
+.next {
+
+  background: #21113f;
+
+  color: white;
+
+  width: 100%;
+
+  margin-top: 15px;
+
+}
+
+.message {
+
+  font-size: 18px;
+
+  font-weight: bold;
+
+  margin: 15px 0;
+
+  min-height: 25px;
+
+}
+
+.hidden {
+
+  display: none;
+
+}
+
+.restart {
+
+  background: #21113f;
+
+  color: white;
+
+  width: 100%;
+
+}
 
 </style>
 
@@ -42,10 +184,248 @@ button{padding:15px;border:0;border-radius:12px;font-size:16px;font-weight:bold}
 
 <div class="game">
 
-<h1>🧠 Trivia Challenge</h1>
+  <h1>🧠 Trivia Challenge</h1>
 
-<p>Answer correctly and earn points!</p>
+  <p class="subtitle">
 
-<div id="game">
+    Answer correctly and earn points!
 
-<div class="score">⭐ Points: <span id="score">
+  </p>
+
+  <div class="score">
+
+    ⭐ Points: <span id="score">0</span>
+
+  </div>
+
+  <div id="question" class="question"></div>
+
+  <div id="answers" class="answers"></div>
+
+  <div id="message" class="message"></div>
+
+  <button id="next" class="next hidden">
+
+    Next Question ➡️
+
+  </button>
+
+  <div id="final" class="hidden">
+
+    <h2>🏆 Game Complete!</h2>
+
+    <p>Your final score is:</p>
+
+    <h2>⭐ <span id="finalScore">0</span> points</h2>
+
+    <button class="restart" onclick="restartGame()">
+
+      🔄 Play Again
+
+    </button>
+
+  </div>
+
+</div>
+
+<script>
+
+const questions = [
+
+  {
+
+    question: "What is the capital of Michigan?",
+
+    answers: ["Detroit", "Lansing", "Flint", "Grand Rapids"],
+
+    correct: 1
+
+  },
+
+  {
+
+    question: "How many days are in a week?",
+
+    answers: ["5", "6", "7", "8"],
+
+    correct: 2
+
+  },
+
+  {
+
+    question: "Which planet is known as the Red Planet?",
+
+    answers: ["Earth", "Mars", "Jupiter", "Venus"],
+
+    correct: 1
+
+  },
+
+  {
+
+    question: "What color do you get by mixing blue and yellow?",
+
+    answers: ["Purple", "Orange", "Green", "Pink"],
+
+    correct: 2
+
+  },
+
+  {
+
+    question: "How many months are in a year?",
+
+    answers: ["10", "11", "12", "13"],
+
+    correct: 2
+
+  }
+
+];
+
+let currentQuestion = 0;
+
+let score = 0;
+
+let answered = false;
+
+const questionBox = document.getElementById("question");
+
+const answersBox = document.getElementById("answers");
+
+const scoreBox = document.getElementById("score");
+
+const messageBox = document.getElementById("message");
+
+const nextButton = document.getElementById("next");
+
+const finalBox = document.getElementById("final");
+
+const finalScore = document.getElementById("finalScore");
+
+function showQuestion() {
+
+  answered = false;
+
+  messageBox.textContent = "";
+
+  nextButton.classList.add("hidden");
+
+  const q = questions[currentQuestion];
+
+  questionBox.textContent =
+
+    (currentQuestion + 1) + ". " + q.question;
+
+  answersBox.innerHTML = "";
+
+  q.answers.forEach((answer, index) => {
+
+    const button = document.createElement("button");
+
+    button.textContent = answer;
+
+    button.className = "answer";
+
+    button.onclick = function() {
+
+      checkAnswer(button, index);
+
+    };
+
+    answersBox.appendChild(button);
+
+  });
+
+}
+
+function checkAnswer(button, selected) {
+
+  if (answered) return;
+
+  answered = true;
+
+  const correct = questions[currentQuestion].correct;
+
+  if (selected === correct) {
+
+    score += 10;
+
+    scoreBox.textContent = score;
+
+    button.classList.add("correct");
+
+    messageBox.textContent =
+
+      "🎉 Correct! You earned 10 points!";
+
+  } else {
+
+    button.classList.add("wrong");
+
+    messageBox.textContent =
+
+      "❌ Not quite!";
+
+    answersBox.children[correct].classList.add("correct");
+
+  }
+
+  nextButton.classList.remove("hidden");
+
+}
+
+nextButton.onclick = function() {
+
+  currentQuestion++;
+
+  if (currentQuestion < questions.length) {
+
+    showQuestion();
+
+  } else {
+
+    questionBox.classList.add("hidden");
+
+    answersBox.classList.add("hidden");
+
+    messageBox.classList.add("hidden");
+
+    nextButton.classList.add("hidden");
+
+    finalScore.textContent = score;
+
+    finalBox.classList.remove("hidden");
+
+  }
+
+};
+
+function restartGame() {
+
+  currentQuestion = 0;
+
+  score = 0;
+
+  scoreBox.textContent = "0";
+
+  questionBox.classList.remove("hidden");
+
+  answersBox.classList.remove("hidden");
+
+  messageBox.classList.remove("hidden");
+
+  finalBox.classList.add("hidden");
+
+  showQuestion();
+
+}
+
+showQuestion();
+
+</script>
+
+</body>
+
+</html>

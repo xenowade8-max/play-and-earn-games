@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Game 3 | Lucky Spin</title>
+
+<style>
+
+body {
+
+  margin: 0;
+
+  font-family: Arial, sans-serif;
+
+  background: linear-gradient(135deg, #21113f, #4b247d);
+
+  min-height: 100vh;
+
+  padding: 20px;
+
+}
+
+.game {
+
+  max-width: 520px;
+
+  margin: 30px auto;
+
+  background: white;
+
+  border-radius: 25px;
+
+  padding: 25px;
+
+  text-align: center;
+
+  box-shadow: 0 18px 45px rgba(0,0,0,.3);
+
+}
+
+.brand {
+
+  font-weight: bold;
+
+  color: #21113f;
+
+}
+
+.score {
+
+  font-size: 21px;
+
+  font-weight: bold;
+
+  background: #f3eff9;
+
+  padding: 13px;
+
+  border-radius: 14px;
+
+  margin: 18px 0;
+
+}
+
+.pointer {
+
+  font-size: 30px;
+
+  margin-bottom: -20px;
+
+  position: relative;
+
+  z-index: 2;
+
+}
+
+.wheel {
+
+  width: 240px;
+
+  height: 240px;
+
+  border-radius: 50%;
+
+  margin: 20px auto;
+
+  background: conic-gradient(
+
+    #eee 0deg 60deg,
+
+    #ddd 60deg 120deg,
+
+    #eee 120deg 180deg,
+
+    #ddd 180deg 240deg,
+
+    #eee 240deg 300deg,
+
+    #ddd 300deg 360deg
+
+  );
+
+  border: 8px solid #21113f;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  transition: transform 2.1s cubic-bezier(.15,.75,.25,1);
+
+  font-size: 25px;
+
+  font-weight: bold;
+
+}
+
+button {
+
+  width: 100%;
+
+  padding: 15px;
+
+  border: 0;
+
+  border-radius: 12px;
+
+  background: #21113f;
+
+  color: white;
+
+  font-size: 16px;
+
+  font-weight: bold;
+
+}
+
+button:disabled {
+
+  opacity: .6;
+
+}
+
+.result {
+
+  font-size: 21px;
+
+  font-weight: bold;
+
+  min-height: 30px;
+
+  margin: 18px 0;
+
+}
+
+.small {
+
+  font-size: 13px;
+
+  color: #666;
+
+  line-height: 1.4;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="game">
+
+<div class="brand">
+
+🎮 PLAY & EARN
+
+</div>
+
+<h1>🎡 Lucky Spin</h1>
+
+<p>
+
+Spin the wheel and win game points!
+
+</p>
+
+<div class="score">
+
+⭐ Saved Points:
+
+<span id="score">0</span>
+
+</div>
+
+<div class="pointer">▼</div>
+
+<div id="wheel" class="wheel">
+
+SPIN
+
+</div>
+
+<button id="spin" onclick="spin()">
+
+🎡 SPIN THE WHEEL
+
+</button>
+
+<div id="result" class="result"></div>
+
+<p class="small">
+
+Points are saved on this device.
+
+They are game points and are not automatically cash.
+
+</p>
+
+</div>
+
+<script>
+
+let name = localStorage.getItem("playerName");
+
+if (!name) {
+
+  name = prompt("Enter your player name");
+
+  if (name) {
+
+    name = name.trim();
+
+    localStorage.setItem("playerName", name);
+
+  }
+
+}
+
+let score =
+
+Number(localStorage.getItem("points_" + name) || 0);
+
+let rotation = 0;
+
+let spinning = false;
+
+document.getElementById("score").textContent = score;
+
+function spin() {
+
+  if (spinning) return;
+
+  spinning = true;
+
+  document.getElementById("spin").disabled = true;
+
+  const prizes = [5, 10, 15, 20, 25, 50];
+
+  const prize =
+
+    prizes[Math.floor(Math.random() * prizes.length)];
+
+  rotation += 1440 + Math.floor(Math.random() * 360);
+
+  document.getElementById("wheel").style.transform =
+
+    "rotate(" + rotation + "deg)";
+
+  setTimeout(function() {
+
+    score += prize;
+
+    localStorage.setItem(
+
+      "points_" + name,
+
+      score
+
+    );
+
+    document.getElementById("score").textContent =
+
+      score;
+
+    document.getElementById("result").textContent =
+
+      "🎉 You won " + prize + " points!";
+
+    spinning = false;
+
+    document.getElementById("spin").disabled = false;
+
+  }, 2100);
+
+}
+
+</script>
+
+</body>
+
+</html>

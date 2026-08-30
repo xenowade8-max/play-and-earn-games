@@ -1,43 +1,109 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html>
 
 <head>
 
-<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Game 2 - Guess the Number</title>
+<title>Guess the Number</title>
 
 <style>
 
-body {
+body{margin:0;padding:20px;font-family:Arial;background:linear-gradient(135deg,#21113f,#4b247d);min-height:100vh}
 
-  margin: 0;
+.game{max-width:520px;margin:30px auto;background:white;border-radius:25px;padding:25px;text-align:center}
 
-  font-family: Arial, sans-serif;
+h1{font-size:32px}
 
-  background: linear-gradient(135deg, #21113f, #4b247d);
+.points{background:#f0ecf7;padding:15px;border-radius:15px;font-size:22px;font-weight:bold}
 
-  min-height: 100vh;
+input{width:100%;padding:15px;box-sizing:border-box;border:1px solid #ccc;border-radius:12px;font-size:18px;text-align:center;margin-top:15px}
 
-  padding: 20px;
+button{width:100%;padding:15px;margin-top:12px;border:0;border-radius:12px;background:#21113f;color:white;font-size:18px;font-weight:bold}
+
+#message{font-size:18px;font-weight:bold;margin:20px 0;min-height:25px}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="game">
+
+<div>🎮 <b>PLAY & EARN</b></div>
+
+<h1>🎯 Guess the Number</h1>
+
+<p>I'm thinking of a number from <b>1 to 20</b>.</p>
+
+<div class="points">⭐ Points: <span id="points">0</span></div>
+
+<input id="guess" type="number" min="1" max="20" placeholder="Enter 1–20">
+
+<button onclick="checkGuess()">Submit Guess</button>
+
+<div id="message"></div>
+
+<button onclick="newGame()">🔄 Play Again</button>
+
+<a href="index.html">← Back to Game 1</a>
+
+</div>
+
+<script>
+
+var number=Math.floor(Math.random()*20)+1;
+
+var points=0;
+
+function checkGuess(){
+
+var guess=Number(document.getElementById("guess").value);
+
+var message=document.getElementById("message");
+
+if(guess<1||guess>20){
+
+message.textContent="Please enter a number from 1 to 20.";
+
+return;
 
 }
 
-.game {
+if(guess===number){
 
-  max-width: 520px;
+points=points+10;
 
-  margin: 30px auto;
+document.getElementById("points").textContent=points;
 
-  background: white;
+message.textContent="🎉 Correct! You earned 10 points!";
 
-  border-radius: 25px;
+}else if(guess<number){
 
-  padding: 25px;
+message.textContent="⬆️ Too low! Try again.";
 
-  text-align: center;
+}else{
 
-  box-shadow: 0 18px 45px rgba(0,0,0,.3);
+message.textContent="⬇️ Too high! Try again.";
+
+}
+
+}
+
+function newGame(){
+
+number=Math.floor(Math.random()*20)+1;
+
+document.getElementById("guess").value="";
+
+document.getElementById("message").textContent="";
+
+}
+
+</script>
+
+</body>
+
+</html>

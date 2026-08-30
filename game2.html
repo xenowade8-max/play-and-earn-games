@@ -4,38 +4,44 @@
 
 <head>
 
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="UTF-8">
 
-<title>Play & Earn - Game 2</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Game 2 - Guess the Number</title>
 
 <style>
 
-body{
+body{margin:0;font-family:Arial,sans-serif;background:linear-gradient(135deg,#21113f,#4b247d);min-height:100vh;padding:20px}
 
-  margin:0;
+.game{max-width:520px;margin:30px auto;background:#fff;border-radius:25px;padding:25px;text-align:center;box-shadow:0 18px 45px rgba(0,0,0,.3)}
 
-  font-family:Arial,sans-serif;
+.brand{font-weight:bold;font-size:18px}
 
-  background:linear-gradient(135deg,#21113f,#4b247d);
+h1{margin:12px 0}
 
-  min-height:100vh;
+.score{background:#f3eff9;padding:14px;border-radius:14px;font-size:20px;font-weight:bold;margin:20px 0}
 
-  padding:20px;
+input{width:100%;padding:15px;border:1px solid #ccc;border-radius:12px;font-size:18px;text-align:center;box-sizing:border-box}
 
-}
+button{width:100%;padding:15px;margin:10px 0;border:0;border-radius:12px;background:#21113f;color:white;font-size:17px;font-weight:bold}
 
-.game{
+#message{min-height:30px;font-weight:bold;margin:15px}
 
-  max-width:520px;
+a{display:block;margin-top:20px;color:#21113f;font-weight:bold}
 
-  margin:30px auto;
+</style>
 
-  background:white;
+</head>
 
-  border-radius:25px;
+<body>
 
-  padding:25px;
+<div class="game">
 
-  text-align:center;
+<div class="brand">🎮 PLAY & EARN</div>
 
-  box-shadow:0 18px 45px rgba(0,0,0,.3);
+<h1>🎯 Guess the Number</h1>
+
+<p>I'm thinking of a number from <strong>1 to 20</strong>.</p>
+
+<div class="score">⭐ Points: <span id="score">0<

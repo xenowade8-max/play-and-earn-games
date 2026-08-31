@@ -56,7 +56,9 @@ button{width:100%;padding:15px;margin-top:12px;border:0;border-radius:12px;backg
 
 var number=Math.floor(Math.random()*20)+1;
 
-var points=0;
+var points=Number(localStorage.getItem("playEarnPoints")||0);
+
+document.getElementById("points").textContent=points;
 
 function checkGuess(){
 

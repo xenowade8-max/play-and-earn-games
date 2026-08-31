@@ -69,7 +69,11 @@ if(played)return;
 played=true;
 
 if(n===winner){
+let points = Number(localStorage.getItem("playEarnPoints")) || 0;
 
+points += 10;
+
+localStorage.setItem("playEarnPoints", points);
 document.getElementById("message").textContent="🎉 YOU FOUND THE PRIZE! +10 POINTS!";
 
 }else{

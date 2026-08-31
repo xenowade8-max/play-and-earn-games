@@ -35,7 +35,15 @@ button{width:100%;padding:15px;margin:8px 0;border:0;border-radius:12px;backgrou
 <p>🧠 Game 1: Trivia Challenge</p>
 
 <div class="score">⭐ Points: <span id="score">0</span></div>
+<div class="score">
 
+  🎁 Rewards
+
+  <br>
+
+  <span id="reward">Keep playing to earn rewards!</span>
+
+</div>
 <h2 id="question"></h2>
 
 <div id="answers"></div>
@@ -110,7 +118,13 @@ c:"Cheetah"
 ];
 
 document.getElementById("score").textContent=score;
+document.getElementById("reward").textContent =
 
+  score >= 100 ? "🏆 You reached 100 points!" :
+
+  score >= 50 ? "🎁 You're halfway to 100 points!" :
+
+  "⭐ Keep playing to earn more!";
 function showQuestion(){
 
 let q=questions[current];

@@ -116,8 +116,14 @@ c:"Cheetah"
 }
 
 ];
-
 document.getElementById("score").textContent=score;
+  document.getElementById("reward").textContent =
+
+  score >= 100 ? "🏆 You reached 100 points!" :
+
+  score >= 50 ? "🎁 You're halfway to 100 points!" :
+
+  "⭐ Keep playing to earn more!";
 document.getElementById("reward").textContent =
 
   score >= 100 ? "🏆 You reached 100 points!" :

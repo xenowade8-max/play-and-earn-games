@@ -244,7 +244,7 @@ if (!name) {
 
 let score =
 
-Number(localStorage.getItem("points_" + name) || 0);
+Number(localStorage.getItem("playEarnPoints") || 0);
 
 let rotation = 0;
 
@@ -278,11 +278,13 @@ function spin() {
 
     localStorage.setItem(
 
-      "points_" + name,
+     localStorage.setItem(
 
-      score
+  "playEarnPoints",
 
-    );
+  score
+
+);
 
     document.getElementById("score").textContent =
 

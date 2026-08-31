@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<title>Pick a Box</title>
+
+<style>
+
+body{margin:0;padding:20px;font-family:Arial;background:linear-gradient(135deg,#21113f,#4b247d);min-height:100vh}
+
+.game{max-width:520px;margin:30px auto;background:white;border-radius:25px;padding:25px;text-align:center}
+
+.boxes{display:flex;gap:10px;margin:25px 0}
+
+.box{flex:1;padding:35px 5px;background:#21113f;color:white;border-radius:15px;font-size:40px;cursor:pointer}
+
+#message{font-size:19px;font-weight:bold;min-height:30px}
+
+button{width:100%;padding:15px;border:0;border-radius:12px;background:#21113f;color:white;font-size:18px;font-weight:bold}
+
+a{display:block;margin-top:20px;color:#21113f;font-weight:bold}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="game">
+
+<h2>🎮 PLAY & EARN</h2>
+
+<h1>💰 Pick a Box</h1>
+
+<p>Choose one box. One box has the prize!</p>
+
+<div class="boxes">
+
+<div class="box" onclick="pick(0)">🎁</div>
+
+<div class="box" onclick="pick(1)">🎁</div>
+
+<div class="box" onclick="pick(2)">🎁</div>
+
+</div>
+
+<div id="message"></div>
+
+<button onclick="newGame()">🔄 Play Again</button>
+
+<a href="index.html">← Back to Game 1</a>
+
+</div>
+
+<script>
+
+var winner=Math.floor(Math.random()*3);
+
+var played=false;
+
+function pick(n){
+
+if(played)return;
+
+played=true;
+
+if(n===winner){
+
+document.getElementById("message").textContent="🎉 YOU FOUND THE PRIZE! +10 POINTS!";
+
+}else{
+
+document.getElementById("message").textContent="😢 Not this box! Try again.";
+
+}
+
+}
+
+function newGame(){
+
+winner=Math.floor(Math.random()*3);
+
+played=false;
+
+document.getElementById("message").textContent="";
+
+}
+
+</script>
+
+</body>
+
+</html>

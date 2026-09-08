@@ -105,7 +105,23 @@ document.getElementById("message").textContent="";
 }
 
 </script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
+<script>
+
+const SUPABASE_URL = "PASTE YOUR API URL HERE";
+
+const SUPABASE_KEY = "PASTE YOUR PUBLISHABLE KEY HERE";
+
+const supabaseClient = supabase.createClient(
+
+  SUPABASE_URL,
+
+  SUPABASE_KEY
+
+);
+
+</script>
 </body>
 
 </html>

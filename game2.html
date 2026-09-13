@@ -113,12 +113,13 @@ const SUPABASE_URL = "https://YOUR-PROJECT-ID.supabase.co";
 
 const SUPABASE_KEY = "sb_publishable_crXooC74A75_nok1HpMXBg_mLaaIvwn";
 
-const supabaseClient = SUPABASE_URL,(
+const supabaseClient = supabase.createClient(
 
-SUPABASE_URL,
+  SUPABASE_URL,
 
   SUPABASE_KEY
 
+);
 );
 
 </script>

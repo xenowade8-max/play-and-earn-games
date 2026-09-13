@@ -79,9 +79,10 @@ if(guess===number){
 points=points+10;
 
 document.getElementById("points").textContent=points;
-localStorage.setItem("playEarnPoints", points);
-message.textContent="🎉 Correct! You earned 10 points!";
 
+localStorage.setItem("playEarnPoints", points);
+
+message.textContent="🎉 Correct! You earned 10 points!";
 }else if(guess<number){
 
 message.textContent="⬆️ Too low! Try again.";

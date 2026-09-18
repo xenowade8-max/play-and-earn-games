@@ -83,6 +83,8 @@ let score=Number(localStorage.getItem("playEarnPoints")||0);
 
 let current=0;
 
+let locked=false;
+
 const questions=[
 
 {q:"What is the largest planet in our solar system?",a:["Mars","Earth","Jupiter","Venus"],c:"Jupiter"},
@@ -145,37 +147,43 @@ box.appendChild(button);
 
 function checkAnswer(answer){
 
-let q=questions[current];
+  if(locked)return;
 
-if(answer===q.c){
+  locked=true;
 
-score+=10;
+  const q=questions[current];
 
-localStorage.setItem("playEarnPoints",score);
+  document.querySelectorAll(".option").forEach(b=>{
 
-document.getElementById("score").textContent=score;
+    b.disabled=true;
 
-document.getElementById("message").textContent="🎉 Correct! You earned 10 points!";
+  });
 
-}else{
+  if(answer===q.c){
 
-document.getElementById("message").textContent="❌ Not quite!";
+    score+=10;
+
+    localStorage.setItem("playEarnPoints",score);
+
+    updateScore();
+
+    document.getElementById("message").textContent=
+
+      "🎉 Correct! You earned 10 points!";
+
+  }else{
+
+    document.getElementById("message").textContent=
+
+      "❌ Not quite! The correct answer was "+q.c+".";
+
+  }
+
+  current=(current+1)%questions.length;
+
+  setTimeout(showQuestion,1200);
 
 }
-
-current++;
-
-if(current>=questions.length){
-
-current=0;
-
-}
-
-setTimeout(showQuestion,1000);
-
-}
-
-showQuestion();
 
 </script>
 <section style="background:#fff;border-radius:25px;padding:30px 20px;margin:30px 0;text-align:center;">

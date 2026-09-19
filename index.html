@@ -77,113 +77,129 @@ button{width:100%;padding:15px;margin:8px 0;border:0;border-radius:12px;backgrou
 
 
 
-</a><script>
+<script>
 
-let score=Number(localStorage.getItem("playEarnPoints")||0);
+let score = Number(localStorage.getItem("playEarnPoints") || 0);
 
-let current=0;
+let current = 0;
 
-let locked=false;
+let locked = false;
 
-const questions=[
+const questions = [
 
-{q:"What is the largest planet in our solar system?",a:["Mars","Earth","Jupiter","Venus"],c:"Jupiter"},
+  {q:"What is the largest planet in our solar system?",a:["Mars","Earth","Jupiter","Venus"],c:"Jupiter"},
 
-{q:"How many days are in a week?",a:["5","6","7","8"],c:"7"},
+  {q:"How many days are in a week?",a:["5","6","7","8"],c:"7"},
 
-{q:"Which animal is the fastest land animal?",a:["Lion","Cheetah","Horse","Tiger"],c:"Cheetah"},
+  {q:"Which animal is the fastest land animal?",a:["Lion","Cheetah","Horse","Tiger"],c:"Cheetah"},
 
-{q:"What city is known as the Motor City?",a:["Chicago","Detroit","Cleveland","Cincinnati"],c:"Detroit"},
+  {q:"What city is known as the Motor City?",a:["Chicago","Detroit","Cleveland","Cincinnati"],c:"Detroit"},
 
-{q:"How many sides does a hexagon have?",a:["5","6","7","8"],c:"6"},
+  {q:"How many sides does a hexagon have?",a:["5","6","7","8"],c:"6"},
 
-{q:"Which ocean is the largest?",a:["Atlantic","Indian","Pacific","Arctic"],c:"Pacific"},
+  {q:"Which ocean is the largest?",a:["Atlantic","Indian","Pacific","Arctic"],c:"Pacific"},
 
-{q:"What gas do humans need to breathe?",a:["Oxygen","Helium","Carbon dioxide","Hydrogen"],c:"Oxygen"},
+  {q:"What gas do humans need to breathe?",a:["Oxygen","Helium","Carbon dioxide","Hydrogen"],c:"Oxygen"},
 
-{q:"How many months are in a year?",a:["10","11","12","13"],c:"12"},
+  {q:"How many months are in a year?",a:["10","11","12","13"],c:"12"},
 
-{q:"Which planet is known as the Red Planet?",a:["Mars","Venus","Saturn","Neptune"],c:"Mars"},
+  {q:"Which planet is known as the Red Planet?",a:["Mars","Venus","Saturn","Neptune"],c:"Mars"},
 
-{q:"What is 5 + 7?",a:["10","11","12","13"],c:"12"}
+  {q:"What is 5 + 7?",a:["10","11","12","13"],c:"12"}
 
 ];
-document.getElementById("score").textContent=score;
+
+function updateScore() {
+
+  document.getElementById("score").textContent = score;
+
   document.getElementById("reward").textContent =
 
-  score >= 100 ? "🏆 You reached 100 points!" :
+    score >= 100 ? "🏆 You reached 100 points!" :
 
-  score >= 50 ? "🎁 You're halfway to 100 points!" :
+    score >= 50 ? "🎁 You're halfway to 100 points!" :
 
-  "⭐ Keep playing to earn more!";
-
-function showQuestion(){
-
-let q=questions[current];
-
-document.getElementById("question").textContent=q.q;
-
-document.getElementById("message").textContent="";
-
-let box=document.getElementById("answers");
-
-box.innerHTML="";
-
-q.a.forEach(answer=>{
-
-let button=document.createElement("button");
-
-button.className="option";
-
-button.textContent=answer;
-
-button.onclick=()=>checkAnswer(answer);
-
-box.appendChild(button);
-
-});
+    "⭐ Keep playing to earn more!";
 
 }
 
-function checkAnswer(answer){
+function showQuestion() {
 
-  if(locked)return;
+  locked = false;
 
-  locked=true;
+  const q = questions[current];
 
-  const q=questions[current];
+  document.getElementById("question").textContent = q.q;
 
-  document.querySelectorAll(".option").forEach(b=>{
+  document.getElementById("message").textContent = "";
 
-    b.disabled=true;
+  const box = document.getElementById("answers");
+
+  box.innerHTML = "";
+
+  q.a.forEach(answer => {
+
+    const button = document.createElement("button");
+
+    button.className = "option";
+
+    button.textContent = answer;
+
+    button.onclick = function() {
+
+      checkAnswer(answer);
+
+    };
+
+    box.appendChild(button);
 
   });
 
-  if(answer===q.c){
+}
 
-    score+=10;
+function checkAnswer(answer) {
 
-    localStorage.setItem("playEarnPoints",score);
+  if (locked) return;
+
+  locked = true;
+
+  const q = questions[current];
+
+  document.querySelectorAll(".option").forEach(button => {
+
+    button.disabled = true;
+
+  });
+
+  if (answer === q.c) {
+
+    score += 10;
+
+    localStorage.setItem("playEarnPoints", score);
 
     updateScore();
 
-    document.getElementById("message").textContent=
+    document.getElementById("message").textContent =
 
       "🎉 Correct! You earned 10 points!";
 
-  }else{
+  } else {
 
-    document.getElementById("message").textContent=
+    document.getElementById("message").textContent =
 
-      "❌ Not quite! The correct answer was "+q.c+".";
+      "❌ Not quite! The correct answer was " + q.c + ".";
 
   }
 
-  current=(current+1)%questions.length;
+  current = (current + 1) % questions.length;
 
-  setTimeout(showQuestion,1200);
+  setTimeout(showQuestion, 1200);
 
 }
+
+updateScore();
+
+showQuestion();
 
 </script>
 <section style="background:#fff;border-radius:25px;padding:30px 20px;margin:30px 0;text-align:center;">
